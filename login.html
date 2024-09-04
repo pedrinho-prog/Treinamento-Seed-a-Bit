@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <style>
+        body {
+            font-family: poppins;
+            background-color: #050A24;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .caixa {
+            background-color: #fafafafa;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 35%;
+             /*Devo dizer que aprender a transformar o container de forma percentual 
+             foi um divisor de águas na minha vida. Assim tudo funciona melhor.*/
+        }
+
+        h1 {
+            color: #101828;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #344054;
+        }
+
+        .email, .senha {
+            margin-bottom: 16px;
+        }
+
+        input[type="email"], input[type="password"] {
+            box-sizing: border-box;/*Ferramenta mágica capaz de deixar a 
+            caixa de texto alinhada com o botão inferior*/
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: 1px solid #98A2B3;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #3F74F5; /*Cor adaptada para o contorno*/
+            outline: none; /*Remove o contorno original*/
+            box-shadow: 0 0 5px rgba(63, 116, 245, 0.5); /*Efeito de sombra*/
+        }
+
+        .alinhamento {
+            display: inline;
+        }
+
+        .senha {
+            margin-top: 8px;
+        }
+
+        .senha a {
+            float: right;
+            text-decoration: none;
+            color: #1570EF;
+            font-size: 16px;
+        }
+
+        .senha span {
+            font-size: 16px;
+            font-weight: 400;
+
+        }
+                
+        .botão button {
+            width: 100%;
+            padding: 14px;
+            background-color: #1570EF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            
+        }
+
+        button:hover {
+            background-color: #101828;
+            color: #fafafafa;
+
+        }/*O erro inicialmente apresentado ocorreu porque
+        não pode haver espaço entre o chamado "button" e o ":hover"
+        por questões de semântica - deixa-los separados faz com que
+        */
+
+        .outro {
+            text-align: center;
+            margin-top: 20px;
+            padding: 0;
+            margin: 0;
+            color: #98A2B3;
+            font-size: 16px;
+        }
+
+        .outro a {
+            text-decoration: none;
+            color: #1570EF; /*Coloquei pensando que iria mudar a cor do texto interno, mas acabou que a ideia só era boa na minha cabeça,
+            no entando, irei manter, apenas para utilizar de molde quando, um dia, mudar a cor do texto também for uma ação proveitosa.*/
+        }
+
+        /*COMEÇANDO EDIÇÕES ESPECIFICAS PARA MOBILE*/
+        
+        @media (max-width: 768px) {
+        .caixa {
+            width: 80%;
+            height: 60%;
+            padding: 20px;
+            justify-content: center;
+            align-content: center;
+            
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        input[type="email"], input[type="password"] {
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .botão button {
+            padding: 12px;
+        }
+
+        .botão{
+            padding-top: 12px;
+        }
+
+        .outro {
+            font-size: 14px;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="caixa">
+        <h1>Entre na sua conta</h1>
+
+        <div class="email">
+            <h2>E-mail</h2>
+            <input type="email" placeholder="email@gmail.com">
+        </div>
+
+        <div class="senha">
+                <div class="alinhamento">
+                <span>Senha</span> <a>Esqueceu?</a>
+                </div>
+            <input type="password" placeholder="Digite sua senha">
+        </div>
+
+        <div class="botão">
+            <button>Entrar agora</button>
+        </div>
+
+        <br>
+
+        <div class="outro">
+            <span>Não possui uma conta?</span> <a href="cadastro.html">Cadastre-se.</a>
+        </div>
+    </div>
+</body>
+
+</html>
