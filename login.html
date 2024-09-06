@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
     <title>Tela de Login</title>
     <style>
         body {
@@ -89,13 +90,14 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease;
             
         }
 
         button:hover {
             background-color: #101828;
-            color: #fafafafa;
+            color: #fafafafa;/*não coloquei alteração na cor do texto, mas repeti o comando porque 
+            achei que ficaria legal mudar para preto (não ficou, então essa aba serve para lembrar que é possível, apenas.)*/
 
         }/*O erro inicialmente apresentado ocorreu porque
         não pode haver espaço entre o chamado "button" e o ":hover"
@@ -109,12 +111,12 @@
             margin: 0;
             color: #98A2B3;
             font-size: 16px;
+
         }
 
         .outro a {
             text-decoration: none;
-            color: #1570EF; /*Coloquei pensando que iria mudar a cor do texto interno, mas acabou que a ideia só era boa na minha cabeça,
-            no entando, irei manter, apenas para utilizar de molde quando, um dia, mudar a cor do texto também for uma ação proveitosa.*/
+            color: #1570EF;
         }
 
         /*COMEÇANDO EDIÇÕES ESPECIFICAS PARA MOBILE*/
@@ -177,7 +179,7 @@
         <br>
 
         <div class="outro">
-            <span>Não possui uma conta?</span> <a href="cadastro.html">Cadastre-se.</a>
+            <span>Não possui uma conta?</span> <a href="cadastro.html">Cadastre-se.</a> 
         </div>
     </div>
 </body>
