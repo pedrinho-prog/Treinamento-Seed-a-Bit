@@ -23,8 +23,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             width: 35%;
-             /*Devo dizer que aprender a transformar o container de forma percentual 
-             foi um divisor de águas na minha vida. Assim tudo funciona melhor.*/
+
         }
 
         h1 {
@@ -44,8 +43,7 @@
         }
 
         input[type="email"], input[type="password"] {
-            box-sizing: border-box;/*Ferramenta mágica capaz de deixar a 
-            caixa de texto alinhada com o botão inferior*/
+            box-sizing: border-box;
             width: 100%;
             padding: 14px;
             margin-top: 8px;
@@ -55,9 +53,9 @@
         }
 
         input[type="email"]:focus, input[type="password"]:focus {
-            border-color: #3F74F5; /*Cor adaptada para o contorno*/
-            outline: none; /*Remove o contorno original*/
-            box-shadow: 0 0 5px rgba(63, 116, 245, 0.5); /*Efeito de sombra*/
+            border-color: #3F74F5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(63, 116, 245, 0.5);
         }
 
         .alinhamento {
@@ -78,7 +76,6 @@
         .senha span {
             font-size: 16px;
             font-weight: 400;
-
         }
                 
         .botão button {
@@ -91,18 +88,12 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            
         }
 
         button:hover {
             background-color: #101828;
-            color: #fafafafa;/*não coloquei alteração na cor do texto, mas repeti o comando porque 
-            achei que ficaria legal mudar para preto (não ficou, então essa aba serve para lembrar que é possível, apenas.)*/
-
-        }/*O erro inicialmente apresentado ocorreu porque
-        não pode haver espaço entre o chamado "button" e o ":hover"
-        por questões de semântica - deixa-los separados faz com que
-        */
+            color: #fafafafa;
+        }
 
         .outro {
             text-align: center;
@@ -111,7 +102,6 @@
             margin: 0;
             color: #98A2B3;
             font-size: 16px;
-
         }
 
         .outro a {
@@ -119,39 +109,45 @@
             color: #1570EF;
         }
 
-        /*COMEÇANDO EDIÇÕES ESPECIFICAS PARA MOBILE*/
-        
-        @media (max-width: 768px) {
-        .caixa {
-            width: 80%;
-            height: 60%;
+        .alerta {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fafafa;
+            color: #000000;
             padding: 20px;
-            justify-content: center;
-            align-content: center;
-            
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            display: none;
         }
 
-        h1 {
-            font-size: 24px;
+        .alerta button {
+            background-color: #1570EF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 30px;
         }
 
-        input[type="email"], input[type="password"] {
-            font-size: 14px;
-            padding: 10px;
+        .alerta button:hover {
+            background-color: #050A24;
         }
 
-        .botão button {
-            padding: 12px;
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
         }
-
-        .botão{
-            padding-top: 12px;
-        }
-
-        .outro {
-            font-size: 14px;
-        }
-    }
 
     </style>
 </head>
@@ -162,18 +158,18 @@
 
         <div class="email">
             <h2>E-mail</h2>
-            <input type="email" placeholder="email@gmail.com">
+            <input type="email" id="email" placeholder="email@gmail.com">
         </div>
 
         <div class="senha">
                 <div class="alinhamento">
-                <span>Senha</span> <a>Esqueceu?</a>
+                <span>Senha</span> <a href="#">Esqueceu?</a>
                 </div>
-            <input type="password" placeholder="Digite sua senha">
+            <input type="password" id="senha" placeholder="Digite sua senha">
         </div>
 
         <div class="botão">
-            <button>Entrar agora</button>
+            <button onclick="login()">Entrar agora</button>
         </div>
 
         <br>
@@ -182,6 +178,48 @@
             <span>Não possui uma conta?</span> <a href="cadastro.html">Cadastre-se.</a> 
         </div>
     </div>
+
+    <!-- mensagem de alerta (Não se pode aplicar estilo CSS a um alert padrão do sistema, então se cria um do zero) -->
+
+    <div class="overlay" id="janela"></div>
+    <div class="alerta" id="alerta">
+        <p id="alerta-msg"></p>
+        <button onclick="fecharAlerta()">Tentar Novamente</button>
+    </div>
+
+    <script>
+        function login() {
+            var emaildigitado = document.getElementById('email').value;
+            var senhadigitada = document.getElementById('senha').value;
+
+            var emailsalvo = localStorage.getItem('email');
+            var senhasalva = localStorage.getItem('senha');
+
+            if (emaildigitado === emailsalvo && senhadigitada === senhasalva) {
+                mostraralerta('Login bem-sucedido!');
+                setTimeout(function() {
+                    window.location.href = 'home.html'; 
+                }, 1500); 
+            } else {
+                mostraralerta('Seu usuário ou senha estão incorretos.');
+            }
+        }
+
+        function mostraralerta(mensagem) {
+            var alerta = document.getElementById('alerta');
+            var overlay = document.getElementById('janela');
+            var alertaMsg = document.getElementById('alerta-msg');
+            
+            alertaMsg.textContent = mensagem;
+            alerta.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function fecharAlerta() {
+            document.getElementById('alerta').style.display = 'none';
+            document.getElementById('janela').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

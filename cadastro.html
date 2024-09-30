@@ -24,8 +24,6 @@
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             width: 35%;
-            /*Devo dizer que aprender a transformar o container de forma percentual 
-            foi um divisor de águas na minha vida. Assim tudo funciona melhor.*/
         }
 
         h1 {
@@ -33,13 +31,14 @@
             text-align: center;
             margin-bottom: 24px;
         }
-        h2{
+
+        h2 {
             font-size: 18px;
             font-weight: 400;
             color: #344054;
         }
 
-        .nome, .email, .senha {
+        .nome, .email, .senha, .confirma-senha {
             margin-bottom: 16px;
         }
 
@@ -50,14 +49,23 @@
             border: 1px solid #98A2B3;
             border-radius: 4px;
             font-size: 16px;
-            box-sizing: border-box;/*Ferramenta mágica capaz de deixar a 
-            caixa de texto alinhada com o botão inferior*/
+            box-sizing: border-box;
         }
 
-            input[type="name"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-            border-color: #1570EF; /*Cor adaptada para o contorno*/
-            outline: none; /*Remove o contorno original*/
-            box-shadow: 0 0 5px rgba(63, 116, 245, 0.5); /*Efeito de sombra*/
+        input[type="name"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #1570EF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(63, 116, 245, 0.5);
+        }
+
+        input.erro {
+            border-color: red;
+        }
+
+        .mens_erro {
+            color: red;
+            font-size: 14px;
+            display: none;
         }
 
         .botão button {
@@ -69,10 +77,10 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /*Define um tempo para que ocorra a transição*/
+            transition: background-color 0.3s ease;
         }
 
-        button:hover{
+        button:hover {
             background-color: #101828;
         }
 
@@ -88,31 +96,27 @@
             color: #1570EF;
         }
 
-
-        
         @media (max-width: 768px) {
             .Cadastre-se {
-            width: 80%;
-            height: 60%;
-            padding: 20px;
-            justify-content: center;
+                width: 80%;
+                height: 60%;
+                padding: 20px;
+                justify-content: center;
             }
 
             input[type="email"], input[type="password"], input[type="name"] {
-            font-size: 14px;
-            padding: 10px;
-        }
+                font-size: 14px;
+                padding: 10px;
+            }
 
-        .botão{
-            padding-top: 12px;
-        }
+            .botão {
+                padding-top: 12px;
+            }
 
-        .Login{
-            padding-top: 12px;
+            .Login {
+                padding-top: 12px;
+            }
         }
-            
-        }
-    
     </style>
 
 </head>
@@ -123,27 +127,100 @@
 
         <div class="nome">
             <h2 class="name">Nome</h2>
-            <input type="name" placeholder="Digite seu nome">
+            <input type="name" placeholder="Digite seu nome" id="nome">
+            <span class="mens_erro" id="erro-nome">Erro: o campo Nome não pode conter números ou pontuações!</span>
         </div>
 
         <div class="email">
             <h2 class="email">E-mail</h2>
-            <input type="email" placeholder="email@mail.com">
+            <input type="email" placeholder="email@mail.com" id="email">
+            <span class="mens_erro" id="erro-email">Erro: o campo Email deve contar @ e, pelo menos, 5 caracteres!</span>
         </div>
 
         <div class="senha">
             <h2 class="senha">Senha</h2>
-            <input type="password" placeholder="Digite sua senha">
+            <input type="password" placeholder="Digite sua senha" id="senha">
+            <span class="mens_erro" id="erro-senha">Erro: a sua senha deve ter ao menos 6 caracteres!</span>
+        </div>
+
+        <div class="confirma-senha">
+            <h2 class="confirma-senha">Confirmar Senha</h2>
+            <input type="password" placeholder="Confirme sua senha" id="confirmaSenha">
+            <span class="mens_erro" id="erro-confirmaSenha">Erro: as senhas não combinam!</span>
         </div>
 
         <div class="botão">
-            <button>Criar</button>
+            <button type="submit" onclick="validar()">Criar</button>
         </div>
 
         <div class="Login">
             <span>Já possui conta?</span> <a href="login.html">Log in</a>
         </div>
-
+        
     </div>
+
+    <script>
+function validar() {
+    var nome = document.getElementById('nome').value;
+    var email = document.getElementById('email').value;
+    var senha = document.getElementById('senha').value;
+    var confirmaSenha = document.getElementById('confirmaSenha').value;
+
+    var nomevalido = /^[a-zA-Z\s]+$/;
+    var emailvalido = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    var senhavalida = senha.length >= 6;
+
+    var valid = true;
+
+    if (!nomevalido.test(nome)) {
+        document.getElementById('nome').classList.add('erro');
+        document.getElementById('erro-nome').style.display = 'block';
+            valid = false;
+    } else {
+        document.getElementById('nome').classList.remove('erro');
+        document.getElementById('erro-nome').style.display = 'none';
+    }
+
+    if (!emailvalido.test(email)) {
+        document.getElementById('email').classList.add('erro');
+        document.getElementById('erro-email').style.display = 'block';
+            valid = false;
+    } else {
+        document.getElementById('email').classList.remove('erro');
+        document.getElementById('erro-email').style.display = 'none';
+    }
+
+    if (!senhavalida) {
+        document.getElementById('senha').classList.add('erro');
+        document.getElementById('erro-senha').style.display = 'block';
+            valid = false;
+    } else {
+        document.getElementById('senha').classList.remove('erro');
+        document.getElementById('erro-senha').style.display = 'none';
+    }
+
+    if (senha !== confirmaSenha) {
+        document.getElementById('confirmaSenha').classList.add('erro');
+        document.getElementById('erro-confirmaSenha').style.display = 'block';
+            valid = false;
+    } else {
+        document.getElementById('confirmaSenha').classList.remove('erro');
+        document.getElementById('erro-confirmaSenha').style.display = 'none';
+    }
+
+    /*Salvar informações validadas no armazenamento local para uso na página de login. Não ideal para aplicações externas por 
+    ser um tipo de memória rápida, que vai se esvair logo que a página for recarregada (além de ter um baixo nível de segurança)*/
+    
+    if (valid) {
+        localStorage.setItem("email", email);
+                localStorage.setItem("senha", senha);
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = "login.html";
+    }
+
+
+}
+    </script>
+
 </body>
 </html>
