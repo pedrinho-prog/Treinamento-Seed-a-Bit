@@ -42,10 +42,9 @@
             font-size: 18px;
         }
 
-        /* Navbar responsiva */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: row; /* Alinha ícones em linha */
+                flex-direction: row; 
                 justify-content: space-between;
             }
 
@@ -67,16 +66,15 @@
             padding: 20px;
         }
 
-        /* Centraliza a caixa de publicação e o feed */
         .conteudo-principal {
-            width: 50%; /* Centralizado */
+            width: 50%; 
             display: flex;
-            flex-direction: column; /* Itens empilhados verticalmente */
+            flex-direction: column; 
             margin: 0 auto;
         }
 
         .publicar {
-            width: 100%; /* Garante que tenha a mesma largura dos posts */
+            width: 100%; 
             background-color: #050A24;
             padding: 20px;
             border-radius: 12px;
@@ -84,8 +82,8 @@
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Adiciona espaço entre os itens */
-            height: 180px; /* Defina uma altura fixa para a div */
+            justify-content: space-between; 
+            height: 180px;
             border-radius: 0;
         }
 
@@ -101,8 +99,8 @@
         }
 
         .publicar input::placeholder {
-            color: white; /* Defina a cor desejada aqui */
-            opacity: 1; /* Define a opacidade do placeholder para garantir que ele fique totalmente visível */
+            color: white; 
+            opacity: 1; 
         }
 
         .ações {
@@ -137,7 +135,7 @@
         }
 
         .postagem {
-            width: 100%; /* Garante que os posts também ocupem toda a largura */
+            width: 100%; 
             background-color: #050A24;
             padding: 20px;
             margin-bottom: 20px;
@@ -147,13 +145,13 @@
         }
 
         .Sugestões {
-            width: 25%; /* Define uma largura fixa, independente das publicações */
+            width: 25%; 
             margin-left: 40px;
             background-color: #101828;
             padding: 20px;
             border-radius: 12px;
-            max-height: 400px; /* Altura máxima definida */
-            overflow-y: auto; /* Habilita rolagem se o conteúdo exceder a altura */
+            max-height: 400px;
+            overflow-y: auto; 
         }
 
         .rápida img.icone {
@@ -164,7 +162,7 @@
         }
 
         .rápida img.icone:hover {
-            transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+            transform: scale(1.1); 
         }
 
         .Sugestões h3 {
@@ -195,7 +193,6 @@
             cursor: pointer;
         }
 
-        /* Responsividade */
         @media (max-width: 768px) {
             .inicio {
                 flex-direction: column;
@@ -203,7 +200,7 @@
             }
 
             .conteudo-principal, .feed, .publicar {
-                width: 100%; /* Caixa de publicação ocupa largura total */
+                width: 100%; 
             }
 
             .Sugestões {
@@ -236,7 +233,6 @@
                 <div class="inferior">
                     <div class="ações">
                         <div class="rápida">
-                            <!-- Ícones de postagens rápidas -->
                             <img src="image_icon.png" alt="Imagem" title="Adicionar Imagem" class="icone">
                             <img src="gif_icon.png" alt="GIF" title="Adicionar GIF" class="icone">
                             <img src="emoji_icon.png" alt="Emoji" title="Adicionar Emoji" class="icone">
@@ -250,7 +246,6 @@
             </div>
 
             <div id="feed" class="feed">
-                <!-- Feed de postagens -->
             </div>
         </div>
 
@@ -259,12 +254,11 @@
             <div class="usuario">
                 <div>
                     <img src="" alt="usuário">
-                    <span>Nome</span> <!-- Nome do usuário adicionado -->
+                    <span>Nome</span> 
                     <span>@username</span>
                 </div>
                 <button class="seguir">Seguir</button>
             </div>
-            <!-- Replicar o bloco acima para mais sugestões -->
         </div>
 
     </div>
@@ -284,7 +278,7 @@
                     </div>
                 `;
                 feed.insertBefore(newPost, feed.firstChild);
-                document.getElementById('postText').value = ''; // Limpa o campo de texto
+                document.getElementById('postText').value = ''; 
             }
         }
     </script>
